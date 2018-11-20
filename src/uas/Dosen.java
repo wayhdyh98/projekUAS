@@ -7,7 +7,7 @@ package uas;
 
 /**
  *
- * @author LENOVO
+ * ini author krisna
  */
 public class Dosen extends javax.swing.JFrame {
 
