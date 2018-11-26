@@ -1,6 +1,7 @@
 package uas;
 import java.sql.*;
 import javax.swing.*;
+import java.awt.*;
 
 public class Register extends Koneksi {
     
@@ -13,9 +14,6 @@ public class Register extends Koneksi {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel_Maba = new javax.swing.JLabel();
-        exit = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel_Nim = new javax.swing.JLabel();
         jLabel_Password = new javax.swing.JLabel();
@@ -29,47 +27,16 @@ public class Register extends Koneksi {
         jLabel_Kelas = new javax.swing.JLabel();
         kelasBox2 = new javax.swing.JComboBox<>();
         kelasBox1 = new javax.swing.JComboBox<>();
+        jPanel3 = new javax.swing.JPanel();
+        exit = new javax.swing.JLabel();
+        jLabel_Siakad = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel_Info = new javax.swing.JLabel();
+        KlikSini = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(32767, 32767));
         setUndecorated(true);
-
-        jPanel1.setBackground(new java.awt.Color(47, 97, 255));
-
-        jLabel_Maba.setFont(new java.awt.Font("Legal LT Std Book", 0, 24)); // NOI18N
-        jLabel_Maba.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_Maba.setText("Mahasiswa Baru");
-
-        exit.setFont(new java.awt.Font("Legal LT Std Book", 1, 24)); // NOI18N
-        exit.setForeground(new java.awt.Color(255, 255, 255));
-        exit.setText("X");
-        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        exit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exitMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel_Maba)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
-                .addComponent(exit)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_Maba)
-                    .addComponent(exit))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         jPanel2.setBackground(new java.awt.Color(100, 100, 100));
 
@@ -83,13 +50,19 @@ public class Register extends Koneksi {
 
         nimText.setBackground(new java.awt.Color(174, 174, 174));
         nimText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        nimText.setForeground(new java.awt.Color(255, 255, 255));
         nimText.setToolTipText("Input nim here!");
-        nimText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(174, 174, 174), 2));
+        nimText.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        nimText.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        nimText.setOpaque(false);
 
         passText.setBackground(new java.awt.Color(174, 174, 174));
         passText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        passText.setForeground(new java.awt.Color(255, 255, 255));
         passText.setToolTipText("Input password here!");
-        passText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(174, 174, 174), 2));
+        passText.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        passText.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        passText.setOpaque(false);
 
         daftarButton.setBackground(new java.awt.Color(47, 97, 255));
         daftarButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -107,8 +80,11 @@ public class Register extends Koneksi {
 
         userText.setBackground(new java.awt.Color(174, 174, 174));
         userText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        userText.setForeground(new java.awt.Color(255, 255, 255));
         userText.setToolTipText("Input username here!");
-        userText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(174, 174, 174), 2));
+        userText.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        userText.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        userText.setOpaque(false);
 
         jLabel_Jurusan.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel_Jurusan.setForeground(new java.awt.Color(255, 255, 255));
@@ -127,114 +103,238 @@ public class Register extends Koneksi {
         kelasBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
         kelasBox1.setSelectedIndex(-1);
 
+        jPanel3.setBackground(new java.awt.Color(47, 97, 255));
+
+        exit.setFont(new java.awt.Font("Font Awesome 5 Free Regular", 0, 48)); // NOI18N
+        exit.setForeground(new java.awt.Color(255, 255, 255));
+        exit.setText("");
+        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitMouseExited(evt);
+            }
+        });
+
+        jLabel_Siakad.setFont(new java.awt.Font("Legal LT Std Book", 0, 24)); // NOI18N
+        jLabel_Siakad.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Siakad.setText("Sistem Akademik");
+
+        jLabel1.setFont(new java.awt.Font("Font Awesome 5 Free Solid", 0, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel_Siakad, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 340, Short.MAX_VALUE)
+                .addComponent(exit)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_Siakad)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        jLabel2.setFont(new java.awt.Font("Font Awesome 5 Free Solid", 0, 200)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("");
+
+        jLabel_Info.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel_Info.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Info.setText("Sudah Punya Akun?");
+
+        KlikSini.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        KlikSini.setForeground(new java.awt.Color(255, 255, 255));
+        KlikSini.setText("Klik Di Sini");
+        KlikSini.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        KlikSini.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                KlikSiniMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                KlikSiniMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                KlikSiniMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel_Nim)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(nimText, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel_Username)
-                            .addGap(18, 18, 18)
-                            .addComponent(userText, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel_Password)
-                                .addComponent(jLabel_Jurusan))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(passText, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jurusanBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(kelasBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(kelasBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(daftarButton))))
-                    .addComponent(jLabel_Kelas))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel_Nim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Username, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Jurusan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel_Kelas, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jurusanBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(passText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                                .addComponent(userText, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(nimText, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(kelasBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(kelasBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(103, 103, 103))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(daftarButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                        .addComponent(jLabel_Info)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(KlikSini)
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nimText, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_Nim))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_Username)
-                    .addComponent(userText, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_Password)
-                    .addComponent(passText, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_Jurusan)
-                    .addComponent(jurusanBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_Kelas)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nimText, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_Nim))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(userText, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_Username))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(passText, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_Password))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jurusanBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_Jurusan))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(kelasBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(kelasBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel_Kelas))
+                        .addGap(18, 18, 18)
+                        .addComponent(daftarButton))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(kelasBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(kelasBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(11, 11, 11)
-                .addComponent(daftarButton)
-                .addGap(0, 11, Short.MAX_VALUE))
+                        .addComponent(jLabel_Info)
+                        .addComponent(KlikSini)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(221, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 48, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void daftarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftarButtonActionPerformed
+        if(nimText.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Nim Wajib diisi!");
+        }else if(userText.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Username Wajib diisi!");
+        }else if(passText.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Password Wajib diisi!");
+        }else if(jurusanBox.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(null, "Jurusan Wajib diisi!");
+        }else if(kelasBox1.getSelectedItem() == null || kelasBox2.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(null, "Kelas Wajib diisi!");
+        }else{
+            openConnect();
+            String query = "Insert into mahasiswa (nim,nama,password,jurusan,kelas) " + "values ('"
+            + this.nimText.getText() + "',"
+            + "'" + this.userText.getText() + "',"
+            + "'" + this.passText.getText() + "',"
+            + "'" + this.jurusanBox.getSelectedItem().toString() + "',"
+            + "'" + this.kelasBox1.getSelectedItem().toString() + this.kelasBox2.getSelectedItem().toString() + "')";
+            try {
+                PreparedStatement mStatement = koneksi.prepareStatement(query);
+                mStatement.executeUpdate();
+                mStatement.close();
+                JOptionPane.showMessageDialog(this, "Akun telah Terdaftar!");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Terjadi Kesalahan " + ex.getMessage());
+            }
+            
+            Menu mn = new Menu();
+            mn.setVisible(true);
+            mn.setLocationRelativeTo(null);
+            mn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
+        }
+    }//GEN-LAST:event_daftarButtonActionPerformed
+
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
         System.exit(0);
     }//GEN-LAST:event_exitMouseClicked
 
-    private void daftarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_daftarButtonActionPerformed
-        if(nimText.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Nim Wajib diisi!");
-        }
-        openConnect();
-        String query = "Insert into mahasiswa (nim,nama,password,jurusan,kelas) " + "values ('"
-                + this.nimText.getText() + "',"
-                + "'" + this.userText.getText() + "',"
-                + "'" + this.passText.getText() + "',"
-                + "'" + this.jurusanBox.getSelectedItem().toString() + "',"
-                + "'" + this.kelasBox1.getSelectedItem().toString() + this.kelasBox2.getSelectedItem().toString() + "')";
-        try {
-            PreparedStatement mStatement = koneksi.prepareStatement(query);
-            mStatement.executeUpdate();
-            mStatement.close();
-            JOptionPane.showMessageDialog(this, "Data Berhasil Ditambah");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Terjadi Kesalahan " + ex.getMessage());
-        }
-    }//GEN-LAST:event_daftarButtonActionPerformed
+    private void exitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseEntered
+        exit.setFont(new Font("Font Awesome 5 Free Solid", Font.BOLD, 48));
+        exit.setForeground(new Color(255, 255, 255));
+    }//GEN-LAST:event_exitMouseEntered
+
+    private void exitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseExited
+        exit.setFont(new Font("Font Awesome 5 Free Regular", Font.BOLD, 48));
+        exit.setForeground(new Color(255, 255, 255));
+    }//GEN-LAST:event_exitMouseExited
+
+    private void KlikSiniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KlikSiniMouseClicked
+        Menu mn = new Menu();
+        mn.setVisible(true);
+        mn.setLocationRelativeTo(null);
+        mn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_KlikSiniMouseClicked
+
+    private void KlikSiniMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KlikSiniMouseEntered
+        KlikSini.setText("<html><u>Klik Di Sini</u></html>");
+    }//GEN-LAST:event_KlikSiniMouseEntered
+
+    private void KlikSiniMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KlikSiniMouseExited
+        KlikSini.setText("Klik Di Sini");
+    }//GEN-LAST:event_KlikSiniMouseExited
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -245,16 +345,20 @@ public class Register extends Koneksi {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel KlikSini;
     private javax.swing.JButton daftarButton;
     private javax.swing.JLabel exit;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel_Info;
     private javax.swing.JLabel jLabel_Jurusan;
     private javax.swing.JLabel jLabel_Kelas;
-    private javax.swing.JLabel jLabel_Maba;
     private javax.swing.JLabel jLabel_Nim;
     private javax.swing.JLabel jLabel_Password;
+    private javax.swing.JLabel jLabel_Siakad;
     private javax.swing.JLabel jLabel_Username;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JComboBox<String> jurusanBox;
     private javax.swing.JComboBox<String> kelasBox1;
     private javax.swing.JComboBox<String> kelasBox2;

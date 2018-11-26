@@ -1,6 +1,5 @@
 package uas;
 import java.sql.*;
-import javax.swing.*;
 
 public class Koneksi extends javax.swing.JFrame {
     public static Connection koneksi;
