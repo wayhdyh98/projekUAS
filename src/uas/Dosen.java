@@ -170,6 +170,11 @@ public class Dosen extends Koneksi {
         na.setEditable(false);
         na.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         na.setOpaque(false);
+        na.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                naActionPerformed(evt);
+            }
+        });
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Status:");
@@ -576,6 +581,10 @@ public class Dosen extends Koneksi {
         exit.setFont(new Font("Font Awesome 5 Free Regular", Font.BOLD, 24));
         exit.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_exitMouseExited
+
+    private void naActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_naActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_naActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
