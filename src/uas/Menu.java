@@ -2,8 +2,9 @@ package uas;
 import java.sql.*;
 import javax.swing.*;
 import java.awt.*;
+import backend.Backend;
 
-public class Menu extends Koneksi {
+public class Menu extends javax.swing.JFrame {
 
     public Menu() {
         initComponents();
@@ -12,12 +13,11 @@ public class Menu extends Koneksi {
     
     private void getData() {
         try {
-            openConnect();
-            Statement s = koneksi.createStatement();
-            String sql = "Select * from mahasiswa Where nama='" + userText.getText() + "' and password='" + passText.getText() + "'";
-            ResultSet r = s.executeQuery(sql);
+            String query = "Select * from mahasiswa Where nim='" + userText.getText() + "' Or nama='" + userText.getText() + "' And password='" + passText.getText() + "'";
+            ResultSet r = Backend.selectQuery(query);
             if(r.next()){
-                Mahasiswa mhs = new Mahasiswa();
+                String nim = r.getString("nim");
+                Mahasiswa mhs = new Mahasiswa(nim);
                 mhs.setVisible(true);
                 mhs.setLocationRelativeTo(null);
                 mhs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,7 +26,6 @@ public class Menu extends Koneksi {
                 JOptionPane.showMessageDialog(null, "Username atau Password Salah! Coba lagi.");
             }
             r.close();
-            s.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this,"Terjadi kesalahan " + e.getMessage());
         }
@@ -36,8 +35,8 @@ public class Menu extends Koneksi {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        background = new javax.swing.JPanel();
+        top = new javax.swing.JPanel();
         exit = new javax.swing.JLabel();
         jLabel_Siakad = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -54,9 +53,9 @@ public class Menu extends Koneksi {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(100, 100, 100));
+        background.setBackground(new java.awt.Color(100, 100, 100));
 
-        jPanel2.setBackground(new java.awt.Color(47, 97, 255));
+        top.setBackground(new java.awt.Color(47, 97, 255));
 
         exit.setFont(new java.awt.Font("Font Awesome 5 Free Regular", 0, 48)); // NOI18N
         exit.setForeground(new java.awt.Color(255, 255, 255));
@@ -82,11 +81,11 @@ public class Menu extends Koneksi {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout topLayout = new javax.swing.GroupLayout(top);
+        top.setLayout(topLayout);
+        topLayout.setHorizontalGroup(
+            topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(topLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -95,11 +94,11 @@ public class Menu extends Koneksi {
                 .addComponent(exit)
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        topLayout.setVerticalGroup(
+            topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(topLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_Siakad)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -124,6 +123,7 @@ public class Menu extends Koneksi {
         userText.setBackground(new java.awt.Color(240, 240, 240));
         userText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         userText.setForeground(new java.awt.Color(255, 255, 255));
+        userText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         userText.setToolTipText("");
         userText.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         userText.setMargin(new java.awt.Insets(5, 5, 5, 5));
@@ -132,6 +132,7 @@ public class Menu extends Koneksi {
         passText.setBackground(new java.awt.Color(240, 240, 240));
         passText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         passText.setForeground(new java.awt.Color(255, 255, 255));
+        passText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         passText.setToolTipText("Input password here!");
         passText.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         passText.setMargin(new java.awt.Insets(5, 5, 5, 5));
@@ -183,12 +184,12 @@ public class Menu extends Koneksi {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
+        background.setLayout(backgroundLayout);
+        backgroundLayout.setHorizontalGroup(
+            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(top, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(door)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
@@ -196,14 +197,14 @@ public class Menu extends Koneksi {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(KlikSini)
                 .addGap(179, 179, 179))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(backgroundLayout.createSequentialGroup()
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(backgroundLayout.createSequentialGroup()
                         .addGap(260, 260, 260)
                         .addComponent(loginButton))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(backgroundLayout.createSequentialGroup()
                         .addGap(213, 213, 213)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(passText, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel_Password, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -211,10 +212,10 @@ public class Menu extends Koneksi {
                             .addComponent(userText))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        backgroundLayout.setVerticalGroup(
+            backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backgroundLayout.createSequentialGroup()
+                .addComponent(top, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -228,24 +229,22 @@ public class Menu extends Koneksi {
                 .addGap(18, 18, 18)
                 .addComponent(loginButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel_Info)
                     .addComponent(KlikSini)
                     .addComponent(door, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3))
         );
 
-        userText.getAccessibleContext().setAccessibleDescription("");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -319,6 +318,7 @@ public class Menu extends Koneksi {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel KlikSini;
+    private javax.swing.JPanel background;
     private javax.swing.JLabel door;
     private javax.swing.JLabel exit;
     private javax.swing.JLabel jLabel1;
@@ -327,10 +327,9 @@ public class Menu extends Koneksi {
     private javax.swing.JLabel jLabel_Password;
     private javax.swing.JLabel jLabel_Siakad;
     private javax.swing.JLabel jLabel_Username;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton loginButton;
     private javax.swing.JPasswordField passText;
+    private javax.swing.JPanel top;
     private javax.swing.JTextField userText;
     // End of variables declaration//GEN-END:variables
 }

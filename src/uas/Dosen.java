@@ -3,8 +3,9 @@ import java.sql.*;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.table.*;
+import backend.Backend;
 
-public class Dosen extends Koneksi {
+public class Dosen extends javax.swing.JFrame {
     private DefaultTableModel model;
     private DefaultTableCellRenderer isi;
     
@@ -29,17 +30,12 @@ public class Dosen extends Koneksi {
     private void getData(){
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
-        openConnect();
         String mhs = mahasiswaBox.getSelectedItem().toString();
-        String query = "Select nim from mahasiswa Where nama='" + mhs + "'";
         try {
-            Statement s = koneksi.createStatement();
-            ResultSet r = s.executeQuery(query);
+            ResultSet r = Backend.selectQuery("Select nim from mahasiswa Where nama='" + mhs + "'");
             if(r.next()){
                 String nim = r.getString("nim");
-                Statement s2 = koneksi.createStatement();
-                String query2 = "Select * from khs Where nim='" + nim + "'";
-                ResultSet r2 = s2.executeQuery(query2);
+                ResultSet r2 = Backend.selectQuery("Select * from khs Where nim='" + nim + "'");
                 while (r2.next()) {
                     Object[] o = new Object[3];
                     o[0] = r2.getString("kode_mt");
@@ -48,10 +44,8 @@ public class Dosen extends Koneksi {
                     model.addRow(o);
                 }
                 r2.close();
-                s2.close();
             }
             r.close();
-            s.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this,"Terjadi kesalahan " + e.getMessage());
         }
@@ -90,6 +84,7 @@ public class Dosen extends Koneksi {
         exit = new javax.swing.JLabel();
         jLabel_Siakad = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        door = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -140,6 +135,8 @@ public class Dosen extends Koneksi {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Tugas:");
 
+        tugas.setForeground(new java.awt.Color(255, 255, 255));
+        tugas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tugas.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         tugas.setOpaque(false);
 
@@ -147,6 +144,8 @@ public class Dosen extends Koneksi {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Quiz:");
 
+        quiz.setForeground(new java.awt.Color(255, 255, 255));
+        quiz.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         quiz.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         quiz.setOpaque(false);
 
@@ -154,6 +153,8 @@ public class Dosen extends Koneksi {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("UTS:");
 
+        uts.setForeground(new java.awt.Color(255, 255, 255));
+        uts.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         uts.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         uts.setOpaque(false);
 
@@ -161,6 +162,8 @@ public class Dosen extends Koneksi {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("UAS:");
 
+        uas.setForeground(new java.awt.Color(255, 255, 255));
+        uas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         uas.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         uas.setOpaque(false);
 
@@ -168,6 +171,8 @@ public class Dosen extends Koneksi {
         jLabel7.setText("Nilai Akhir:");
 
         na.setEditable(false);
+        na.setForeground(new java.awt.Color(255, 255, 255));
+        na.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         na.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         na.setOpaque(false);
 
@@ -175,6 +180,7 @@ public class Dosen extends Koneksi {
         jLabel8.setText("Status:");
 
         status.setEditable(false);
+        status.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         status.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         status.setOpaque(false);
 
@@ -237,7 +243,7 @@ public class Dosen extends Koneksi {
                 "Title 1", "Title 2", "Title 3"
             }
         ));
-        khsTable.setGridColor(new java.awt.Color(255, 255, 255));
+        khsTable.setGridColor(new java.awt.Color(100, 100, 100));
         jScrollPane1.setViewportView(khsTable);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -317,16 +323,33 @@ public class Dosen extends Koneksi {
                 .addContainerGap())
         );
 
+        door.setFont(new java.awt.Font("Font Awesome 5 Free Solid", 0, 48)); // NOI18N
+        door.setForeground(new java.awt.Color(255, 255, 255));
+        door.setText("");
+        door.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        door.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                doorMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                doorMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                doorMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
                     .addComponent(jurusanBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -334,7 +357,7 @@ public class Dosen extends Koneksi {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tugas, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -344,11 +367,11 @@ public class Dosen extends Koneksi {
                                 .addGap(14, 14, 14))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(mahasiswaBox, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(matkulBox, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(0, 32, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -358,19 +381,21 @@ public class Dosen extends Koneksi {
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(uas, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(status)
                             .addComponent(na)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(yudisiumButton)
+                                    .addComponent(door))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(yudisiumButton)
-                            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -403,7 +428,7 @@ public class Dosen extends Koneksi {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -411,10 +436,12 @@ public class Dosen extends Koneksi {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(yudisiumButton)
+                        .addGap(66, 66, 66)
+                        .addComponent(door, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(yudisiumButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -434,29 +461,22 @@ public class Dosen extends Koneksi {
 
     private void jurusanBoxPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jurusanBoxPopupMenuWillBecomeInvisible
         if(jurusanBox.getSelectedItem() != null){
-            openConnect();
             String jur = jurusanBox.getSelectedItem().toString();
-            String query = "Select nama from mahasiswa Where jurusan='" + jur + "'";
-            String query2 = "Select matkul from tb_matkul Where jurusan='" + jur + "'";
             try {
-                Statement s = koneksi.createStatement();
-                Statement s2 = koneksi.createStatement();
-                ResultSet r = s.executeQuery(query);
-                ResultSet r2 = s2.executeQuery(query2);
+                ResultSet r = Backend.selectQuery("Select nama from mahasiswa Where jurusan='" + jur + "'");
+                ResultSet r2 = Backend.selectQuery("Select matkul from tb_matkul Where jurusan='" + jur + "'");
                 mahasiswaBox.removeAllItems();
+                matkulBox.removeAllItems();
                 while(r.next()){
                     mahasiswaBox.addItem(r.getString("nama"));
-                    mahasiswaBox.setSelectedIndex(-1);
                 }
-                r.close();
-                s.close();
-                matkulBox.removeAllItems();
                 while(r2.next()){
                     matkulBox.addItem(r2.getString("matkul"));
-                    matkulBox.setSelectedIndex(-1);
                 }
+                mahasiswaBox.setSelectedIndex(-1);
+                matkulBox.setSelectedIndex(-1);
+                r.close();
                 r2.close();
-                s2.close();
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, "Terjadi Kesalahan " + ex.getMessage());
             }
@@ -479,68 +499,63 @@ public class Dosen extends Koneksi {
         }else if (uas.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Inputkan nilai uas!");
         }else {
-            openConnect();
-            String mhs = mahasiswaBox.getSelectedItem().toString();
-            String mtkul = matkulBox.getSelectedItem().toString();
-            String query = "Select nim, kode_mt from mahasiswa, tb_matkul Where nama='" + mhs + "' And matkul='" + mtkul + "'";
-            int nt = Integer.parseInt(tugas.getText());
-            int nq = Integer.parseInt(quiz.getText());
-            int nts = Integer.parseInt(uts.getText());
-            int nas = Integer.parseInt(uas.getText());
-            if ((nt > 100 || nt < 0) || (nq > 100 || nq < 0) || (nts > 100 || nts < 0) || (nas > 100 || nas < 0)){
-                JOptionPane.showMessageDialog(null, "Nilai tidak valid!");
-            }else{
-                int nA = (nt * 10/100)+(nq * 20/100)+(nts * 30/100)+(nas * 40/100);
-                if (nA >= 60){
-                    status.setText("Lulus!");
-                    status.setFont(new Font("Legal LT Std Book", Font.BOLD, 12));
-                    status.setForeground(new Color(72, 197, 0));
+            try{
+                int nt = Integer.parseInt(tugas.getText());
+                int nq = Integer.parseInt(quiz.getText());
+                int nts = Integer.parseInt(uts.getText());
+                int nas = Integer.parseInt(uas.getText());
+                if ((nt > 100 || nt < 0) || (nq > 100 || nq < 0) || (nts > 100 || nts < 0) || (nas > 100 || nas < 0)){
+                    JOptionPane.showMessageDialog(null, "Nilai tidak valid!");
                 }else{
-                    status.setText("Tidak Lulus!");
-                    status.setFont(new Font("Legal LT Std Book", Font.BOLD, 12));
-                    status.setForeground(new Color(225, 0, 0));
-                }
-                na.setText(Integer.toString(nA));
-                
-                String nilai_huruf;
-                if(nA >= 85){
-                    nilai_huruf = "A";
-                }else if(nA >= 75){
-                    nilai_huruf = "B";
-                }else if(nA >= 60){
-                    nilai_huruf = "C";
-                }else if(nA >= 50){
-                    nilai_huruf = "D";
-                }else{
-                    nilai_huruf = "E";
-                }
-                
-                try {
-                    Statement s = koneksi.createStatement();
-                    ResultSet r = s.executeQuery(query);
-                    if(r.next()){
-                        String nim = r.getString("nim");
-                        String kode_mtkul = r.getString("kode_mt");
-                        String query2 = "Insert into khs (kode_mt,nim,nilai) " + "values ('"
-                                        + kode_mtkul + "',"
-                                        + "'" + nim + "',"
-                                        + "'" + nilai_huruf + "')";
-                        try {
-                            PreparedStatement mStatement = koneksi.prepareStatement(query2);
-                            mStatement.executeUpdate();
-                            mStatement.close();
-                            JOptionPane.showMessageDialog(this, "Data Berhasil Disimpan");
-                        } catch (SQLException ex) {
-                            JOptionPane.showMessageDialog(this, "Terjadi Kesalahan " + ex.getMessage());
-                        }
+                    int nA = (nt * 10/100)+(nq * 20/100)+(nts * 30/100)+(nas * 40/100);
+                    if (nA >= 60){
+                        status.setText("LULUS!");
+                        status.setFont(new Font("Legal LT Std Book", Font.BOLD, 12));
+                        status.setForeground(new Color(72, 197, 0));
+                    }else{
+                        status.setText("TIDAK LULUS!");
+                        status.setFont(new Font("Legal LT Std Book", Font.BOLD, 12));
+                        status.setForeground(new Color(225, 0, 0));
                     }
-                    r.close();
-                    s.close();
-                    getData();
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(this, "Terjadi Kesalahan " + ex.getMessage());
+                    na.setText(Integer.toString(nA));
+
+                    String nilai_huruf;
+                    if(nA >= 85){
+                        nilai_huruf = "A";
+                    }else if(nA >= 75){
+                        nilai_huruf = "B";
+                    }else if(nA >= 60){
+                        nilai_huruf = "C";
+                    }else if(nA >= 50){
+                        nilai_huruf = "D";
+                    }else{
+                        nilai_huruf = "E";
+                    }
+
+                    try {
+                        String mhs = mahasiswaBox.getSelectedItem().toString();
+                        String mtkul = matkulBox.getSelectedItem().toString();
+                        ResultSet r = Backend.selectQuery("Select nim, kode_mt from mahasiswa, tb_matkul Where nama='" + mhs + "' And matkul='" + mtkul + "'");
+                        if(r.next()){
+                            String nim = r.getString("nim");
+                            String kode_mtkul = r.getString("kode_mt");
+                            boolean succes = Backend.executeQuery("Insert into khs (kode_mt,nim,nilai) " + "values ('"
+                                            + kode_mtkul + "',"
+                                            + "'" + nim + "',"
+                                            + "'" + nilai_huruf + "')"); 
+                            if (!succes){
+                                JOptionPane.showMessageDialog(this, "Data Gagal Disimpan ");
+                            }
+                        }
+                        r.close();
+                        getData();
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(this, "Terjadi Kesalahan " + ex.getMessage());
+                    }
                 }
-            } 
+            } catch (NumberFormatException e){
+                JOptionPane.showMessageDialog(this, "Harap Inputkan Angka!");
+            }
         }
     }//GEN-LAST:event_yudisiumButtonActionPerformed
 
@@ -578,6 +593,22 @@ public class Dosen extends Koneksi {
         exit.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_exitMouseExited
 
+    private void doorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doorMouseClicked
+        Login lg = new Login();
+        lg.setVisible(true);
+        lg.setLocationRelativeTo(null);
+        lg.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_doorMouseClicked
+
+    private void doorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doorMouseEntered
+        door.setText("\uf52b");
+    }//GEN-LAST:event_doorMouseEntered
+
+    private void doorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doorMouseExited
+        door.setText("\uf52a");
+    }//GEN-LAST:event_doorMouseExited
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -587,6 +618,7 @@ public class Dosen extends Koneksi {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel door;
     private javax.swing.JLabel exit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
