@@ -92,6 +92,11 @@ public class Register extends Koneksi {
 
         jurusanBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teknik Informatika", "Elektronika" }));
         jurusanBox.setSelectedIndex(-1);
+        jurusanBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jurusanBoxActionPerformed(evt);
+            }
+        });
 
         jLabel_Kelas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel_Kelas.setForeground(new java.awt.Color(255, 255, 255));
@@ -218,6 +223,33 @@ public class Register extends Koneksi {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+<<<<<<< HEAD
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nimText, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_Nim))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_Username)
+                    .addComponent(userText, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_Password)
+                    .addComponent(passText, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_Jurusan)
+                    .addComponent(jurusanBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(kelasBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(kelasBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel_Kelas))
+                .addGap(11, 11, 11)
+                .addComponent(daftarButton)
+                .addGap(0, 11, Short.MAX_VALUE))
+=======
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -254,6 +286,7 @@ public class Register extends Koneksi {
                         .addComponent(jLabel_Info)
                         .addComponent(KlikSini)))
                 .addContainerGap())
+>>>>>>> 1f50757f9ab06c8652032b23d9927081834a90b6
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -306,6 +339,11 @@ public class Register extends Koneksi {
         }
     }//GEN-LAST:event_daftarButtonActionPerformed
 
+<<<<<<< HEAD
+    private void jurusanBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jurusanBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jurusanBoxActionPerformed
+=======
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
         System.exit(0);
     }//GEN-LAST:event_exitMouseClicked
@@ -335,6 +373,7 @@ public class Register extends Koneksi {
     private void KlikSiniMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KlikSiniMouseExited
         KlikSini.setText("Klik Di Sini");
     }//GEN-LAST:event_KlikSiniMouseExited
+>>>>>>> 1f50757f9ab06c8652032b23d9927081834a90b6
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
