@@ -62,6 +62,7 @@ public class Mahasiswa extends Koneksi {
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this,"Terjadi kesalahan"+e.getMessage());
+            System.out.println("Salah Sayang");
         }
     }
     
