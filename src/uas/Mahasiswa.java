@@ -16,27 +16,74 @@ import javax.swing.table.*;
  */
 public class Mahasiswa extends Koneksi {
     private DefaultTableModel model;
+    public String username = User.getUserLogin();
+    public String nimFromtable;
+    public Menu mn = new Menu();
     /**
      * Creates new form Mahasiswa
      */
     public Mahasiswa() {
         initComponents();
+        setTabelAbsen();
+    }
+    
+    public void setTabelAbsen(){
         model = new DefaultTableModel();
         this.jTable1.setModel(model);
         model.addColumn("Alpha");
         model.addColumn("Ijin");
         model.addColumn("Sakit");
         model.addColumn("total A/I/S");
-        
+        ambilDataTabelAbsen();
     }
     
-    public void ambilDataTabel(){
+    public void setTabelNilai(){
+        model = new DefaultTableModel();
+        this.jTable1.setModel(model);
+        model.addColumn("Kode Matkul");
+        model.addColumn("nilai");
+    }
+    
+    public void ambilDataNilai(){
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        setTabelNilai();
+        try {
+            openConnect();
+            Statement s = koneksi.createStatement();
+            nimFromtable = jTextFieldNIM.getText();
+            String sql = "Select * from khs where nim = '"+nimFromtable+"'";
+            ResultSet r = s.executeQuery(sql);
+            while (r.next()) {                
+                Object[] o = new Object[2];
+                o[0] = r.getString("kode_mt");
+                o[1] = r.getString("nilai");
+                model.addRow(o);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this,"Terjadi kesalahan"+e.getMessage());
+        }
+    }
+    
+    public void ambilDataTabelAbsen(){
         model.getDataVector().removeAllElements();
         model.fireTableDataChanged();
         try {
             openConnect();
             Statement s = koneksi.createStatement();
-            String sql = "Select * from tb_uas ";
+            String sql1 = "Select * from mahasiswa where nama = '"+username+"'";
+            ResultSet r1 = s.executeQuery(sql1);
+            while (r1.next()) {                
+                nimFromtable = r1.getString("nim");
+                jTextFieldNIM.setText(nimFromtable);
+                String nama = r1.getString("nama");
+                jTextFieldNama.setText(nama);
+                String jurusan = r1.getString("jurusan");
+                jTextFieldJurusan.setText(jurusan);
+                String kelas = r1.getString("kelas");
+                jTextFieldKelas.setText(kelas);
+            }
+            String sql = "Select * from tb_absen where nim='"+nimFromtable+"'";
             ResultSet r = s.executeQuery(sql);
             while (r.next()) {                
                 Object[] o = new Object[4];
@@ -46,11 +93,15 @@ public class Mahasiswa extends Koneksi {
                 o[3] = r.getString("total_ais");
                 model.addRow(o);
             }
-            r.close();
-            s.close();
+//            r.close();
+//            s.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this,"Terjadi kesalahan"+e.getMessage());
         }
+    }
+    
+    public void ambilDataMhs(){
+        
     }
 
     /**
@@ -75,6 +126,8 @@ public class Mahasiswa extends Koneksi {
         jTextFieldNIM = new javax.swing.JTextField();
         jTextFieldJurusan = new javax.swing.JTextField();
         jTextFieldKelas = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,15 +159,42 @@ public class Mahasiswa extends Koneksi {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nama");
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("NIM");
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Jurusan");
 
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Kelas");
 
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Status Absensi ");
+
+        jTextFieldNama.setEditable(false);
+
+        jTextFieldNIM.setEditable(false);
+
+        jTextFieldJurusan.setEditable(false);
+
+        jTextFieldKelas.setEditable(false);
+
+        jButton1.setText("Tabel Absen");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Tabel Nilai");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -125,6 +205,9 @@ public class Mahasiswa extends Koneksi {
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(233, 233, 233))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2)
@@ -133,16 +216,16 @@ public class Mahasiswa extends Koneksi {
                                 .addComponent(jTextFieldKelas)
                                 .addComponent(jTextFieldJurusan)
                                 .addComponent(jTextFieldNIM, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(132, 132, 132))
+                            .addComponent(jLabel1)
                             .addComponent(jTextFieldNama, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(45, 45, 45)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(233, 233, 233))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(27, 27, 27))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,11 +248,15 @@ public class Mahasiswa extends Koneksi {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldJurusan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldKelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 95, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(0, 45, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -187,6 +274,16 @@ public class Mahasiswa extends Koneksi {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        setTabelAbsen();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ambilDataNilai();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,6 +321,8 @@ public class Mahasiswa extends Koneksi {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

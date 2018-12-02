@@ -4,7 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Menu extends Koneksi {
-
+    public String iniUsername;
+            
     public Menu() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -17,6 +18,7 @@ public class Menu extends Koneksi {
             String sql = "Select * from mahasiswa Where nama='" + userText.getText() + "' and password='" + passText.getText() + "'";
             ResultSet r = s.executeQuery(sql);
             if(r.next()){
+                User.setUserLogin(userText.getText());
                 Mahasiswa mhs = new Mahasiswa();
                 mhs.setVisible(true);
                 mhs.setLocationRelativeTo(null);
