@@ -3,6 +3,8 @@ import java.sql.*;
 import javax.swing.*;
 import java.awt.*;
 
+//mamang
+
 public class Menu extends Koneksi {
     public String iniUsername;
             
