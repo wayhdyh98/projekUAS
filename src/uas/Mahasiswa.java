@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.sql.*;
 import javax.swing.table.*;
 import java.awt.*;
-import backend.Backend;
+import backend.*;
 
 public class Mahasiswa extends javax.swing.JFrame {
     private DefaultTableModel model;
@@ -158,7 +158,7 @@ public class Mahasiswa extends javax.swing.JFrame {
 
         top.setBackground(new java.awt.Color(47, 97, 255));
 
-        exit.setFont(new java.awt.Font("Font Awesome 5 Free Regular", 0, 48)); // NOI18N
+        exit.setFont(new java.awt.Font("Font Awesome 5 Free Regular", 0, 24)); // NOI18N
         exit.setForeground(new java.awt.Color(255, 255, 255));
         exit.setText("");
         exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -178,7 +178,7 @@ public class Mahasiswa extends javax.swing.JFrame {
         jLabel_Siakad.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Siakad.setText("Sistem Akademik");
 
-        jLabel6.setFont(new java.awt.Font("Font Awesome 5 Free Solid", 0, 48)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Font Awesome 5 Free Solid", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("");
 
@@ -188,21 +188,25 @@ public class Mahasiswa extends javax.swing.JFrame {
             topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(topLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel_Siakad, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel_Siakad, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(exit)
+                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         topLayout.setVerticalGroup(
             topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(topLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_Siakad)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(topLayout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                        .addGap(11, 11, 11))
+                    .addGroup(topLayout.createSequentialGroup()
+                        .addComponent(exit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(1, 1, 1))
+                    .addComponent(jLabel_Siakad, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap())
         );
 
@@ -387,7 +391,7 @@ public class Mahasiswa extends javax.swing.JFrame {
                 .addComponent(shadow1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        door.setFont(new java.awt.Font("Font Awesome 5 Free Solid", 0, 48)); // NOI18N
+        door.setFont(new java.awt.Font("Font Awesome 5 Free Solid", 0, 24)); // NOI18N
         door.setForeground(new java.awt.Color(255, 255, 255));
         door.setText("");
         door.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -414,7 +418,7 @@ public class Mahasiswa extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(namaText))
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -426,7 +430,7 @@ public class Mahasiswa extends javax.swing.JFrame {
                         .addGap(34, 34, 34))
                     .addGroup(backgroundLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(door)
+                        .addComponent(door, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -462,10 +466,10 @@ public class Mahasiswa extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(kelasText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(khsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(absensiButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(door, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(khsButton, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(absensiButton, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(door, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -488,12 +492,12 @@ public class Mahasiswa extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMouseClicked
 
     private void exitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseEntered
-        exit.setFont(new Font("Font Awesome 5 Free Solid", Font.BOLD, 48));
+        exit.setFont(new Font("Font Awesome 5 Free Solid", Font.BOLD, 25));
         exit.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_exitMouseEntered
 
     private void exitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseExited
-        exit.setFont(new Font("Font Awesome 5 Free Regular", Font.BOLD, 48));
+        exit.setFont(new Font("Font Awesome 5 Free Regular", Font.BOLD, 25));
         exit.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_exitMouseExited
 

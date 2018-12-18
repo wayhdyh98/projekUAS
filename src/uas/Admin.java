@@ -37,7 +37,9 @@ public class Admin extends javax.swing.JFrame {
     
     private void getDataAbsen(){
         try {
-            ResultSet r = Backend.selectQuery("Select * from absensi");
+//            WHERE mahasiswa.nim = absensi.nim
+            String nim = nimBox.getSelectedItem().toString();
+            ResultSet r = Backend.selectQuery("Select * from absensi WHERE nim ="+nim+" ");
             if (r.next()) {                
                 alpha.setText(r.getString("alpha"));
                 ijin.setText(r.getString("ijin"));
@@ -54,10 +56,10 @@ public class Admin extends javax.swing.JFrame {
         model.fireTableDataChanged();
         ResultSet r;
         if (jurusanBox.getSelectedItem().toString().equals("Semua Jurusan")){
-            r = Backend.selectQuery("Select * from mahasiswa, absensi");
+            r = Backend.selectQuery("Select * from mahasiswa, absensi WHERE mahasiswa.nim = absensi.nim");
         }else{
             String jur = jurusanBox.getSelectedItem().toString();
-            r = Backend.selectQuery("Select * from mahasiswa, absensi where jurusan='" + jur + "'");
+            r = Backend.selectQuery("Select * from mahasiswa, absensi where jurusan='" + jur + "' and mahasiswa.nim = absensi.nim");
         }
         try {
             while (r.next()) {
@@ -134,7 +136,7 @@ public class Admin extends javax.swing.JFrame {
 
         top.setBackground(new java.awt.Color(47, 97, 255));
 
-        exit.setFont(new java.awt.Font("Font Awesome 5 Free Regular", 0, 48)); // NOI18N
+        exit.setFont(new java.awt.Font("Font Awesome 5 Free Regular", 0, 24)); // NOI18N
         exit.setForeground(new java.awt.Color(255, 255, 255));
         exit.setText("");
         exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -154,7 +156,7 @@ public class Admin extends javax.swing.JFrame {
         jLabel_Siakad.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_Siakad.setText("Sistem Akademik");
 
-        jLabel1.setFont(new java.awt.Font("Font Awesome 5 Free Solid", 0, 48)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Font Awesome 5 Free Solid", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("");
 
@@ -164,21 +166,25 @@ public class Admin extends javax.swing.JFrame {
             topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(topLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel_Siakad, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel_Siakad, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(exit)
+                .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         topLayout.setVerticalGroup(
             topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(topLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_Siakad)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(exit, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(topLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(topLayout.createSequentialGroup()
+                        .addComponent(exit, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                        .addGap(11, 11, 11))
+                    .addGroup(topLayout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(1, 1, 1))
+                    .addComponent(jLabel_Siakad, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap())
         );
 
@@ -187,7 +193,7 @@ public class Admin extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Jurusan");
 
-        door.setFont(new java.awt.Font("Font Awesome 5 Free Solid", 0, 48)); // NOI18N
+        door.setFont(new java.awt.Font("Font Awesome 5 Free Solid", 0, 24)); // NOI18N
         door.setForeground(new java.awt.Color(255, 255, 255));
         door.setText("");
         door.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -234,7 +240,7 @@ public class Admin extends javax.swing.JFrame {
             .addGap(0, 8, Short.MAX_VALUE)
         );
 
-        jLabel3.setFont(new java.awt.Font("Font Awesome 5 Free Solid", 0, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Font Awesome 5 Free Solid", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("");
@@ -285,7 +291,7 @@ public class Admin extends javax.swing.JFrame {
             .addGap(0, 8, Short.MAX_VALUE)
         );
 
-        jLabel4.setFont(new java.awt.Font("Font Awesome 5 Free Solid", 0, 36)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Font Awesome 5 Free Solid", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("");
@@ -329,14 +335,14 @@ public class Admin extends javax.swing.JFrame {
         shadow1.setLayout(shadow1Layout);
         shadow1Layout.setHorizontalGroup(
             shadow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 42, Short.MAX_VALUE)
         );
         shadow1Layout.setVerticalGroup(
             shadow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 8, Short.MAX_VALUE)
         );
 
-        jLabel5.setFont(new java.awt.Font("Font Awesome 5 Free Solid", 0, 36)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Font Awesome 5 Free Solid", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("");
@@ -346,12 +352,12 @@ public class Admin extends javax.swing.JFrame {
         eraseButtonLayout.setHorizontalGroup(
             eraseButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(shadow1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         eraseButtonLayout.setVerticalGroup(
             eraseButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, eraseButtonLayout.createSequentialGroup()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(shadow1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -392,7 +398,7 @@ public class Admin extends javax.swing.JFrame {
         tableBackgroundLayout.setHorizontalGroup(
             tableBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableBackgroundLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -529,7 +535,6 @@ public class Admin extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(door, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jurusanBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tambahPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, backgroundLayout.createSequentialGroup()
@@ -538,10 +543,11 @@ public class Admin extends javax.swing.JFrame {
                         .addComponent(eraseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(door, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(tableBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
             .addComponent(top, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         backgroundLayout.setVerticalGroup(
@@ -550,6 +556,9 @@ public class Admin extends javax.swing.JFrame {
                 .addComponent(top, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addComponent(tableBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(13, 13, 13))
                     .addGroup(backgroundLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -561,10 +570,8 @@ public class Admin extends javax.swing.JFrame {
                             .addComponent(updateButton, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tambahPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(door, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tableBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(13, 13, 13))
+                        .addGap(18, 18, 18)
+                        .addComponent(door, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -595,12 +602,12 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMouseClicked
 
     private void exitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseEntered
-        exit.setFont(new Font("Font Awesome 5 Free Solid", Font.BOLD, 48));
+        exit.setFont(new Font("Font Awesome 5 Free Solid", Font.BOLD, 25));
         exit.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_exitMouseEntered
 
     private void exitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseExited
-        exit.setFont(new Font("Font Awesome 5 Free Regular", Font.BOLD, 48));
+        exit.setFont(new Font("Font Awesome 5 Free Regular", Font.BOLD, 25));
         exit.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_exitMouseExited
 
